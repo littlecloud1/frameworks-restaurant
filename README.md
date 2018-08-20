@@ -32,5 +32,5 @@ and access [localhost:8080/hello](localhost:8080/hello)
 
 Then run the server:<br />
   python webserver-restaurant.py <br />
-and access [localhost:8080/restaurants](localhost:8080/restaurants)
+and access 
 
