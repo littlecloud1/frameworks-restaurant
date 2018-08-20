@@ -25,6 +25,23 @@ def restaurantMenu(restaurant_id):
         output += '<br/>'
     return output
     
+@app.route('/restaurants/<int:restaurant_id>/new/')
+def newMenuItem(restaurant_id):
+    
+    return "page to create a new menu item. Task 1 complete!"
+
+# Task 2: Create route for editMenuItem function here
+
+@app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/edit/')
+def editMenuItem(restaurant_id, menu_id):
+    return "page to edit a menu item. Task 2 complete!"
+
+# Task 3: Create a route for deleteMenuItem function here
+
+@app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/delete/')
+def deleteMenuItem(restaurant_id, menu_id):
+    return "page to delete a menu item. Task 3 complete!"
+
 
 if __name__ == '__main__':
     app.debug = True #reload whenever code change
