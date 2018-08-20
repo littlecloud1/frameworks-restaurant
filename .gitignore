@@ -1,0 +1,7 @@
+*.txt
+
+*.pyc
+
+*.db
+
+restaurantmenu.db
