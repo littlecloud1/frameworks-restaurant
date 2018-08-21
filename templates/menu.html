@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
     <body>
-    
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                  <li><strong>{{message}}</strong></li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
         <h1>{{restaurant.name}}</h1>
         <a href = '{{url_for('newMenuItem', restaurant_id = restaurant.id) }}'>Create New Item</a><br/><br/>
         {% for i in items %}
