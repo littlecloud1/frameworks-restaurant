@@ -46,7 +46,7 @@ def editMenuItem(restaurant_id, menu_id):
         menu.name = request.form['name']
         session.add(menu)
         session.commit()
-        
+        flash(str(menu.name) + " has been edited!")
         return redirect(url_for('restaurantMenu',restaurant_id = restaurant_id))
     
     else :
@@ -60,10 +60,11 @@ def deleteMenuItem(restaurant_id, menu_id):
     menu = session.query(MenuItem).filter_by(id = menu_id, restaurant_id = restaurant_id).one()
     
     if request.method == 'POST':
- 
+        
+        name = menu.name
         session.delete(menu)
         session.commit()
-        
+        flash(str(name) + " has been delete!")
         return redirect(url_for('restaurantMenu',restaurant_id = restaurant_id))
     
     else :
