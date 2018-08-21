@@ -8,6 +8,7 @@ engine = create_engine('sqlite:///restaurantmenu.db')
 Base.metadata.bind = engine
 DBsession = sessionmaker(bind=engine)
 
+#JSON
 @app.route('/restaurants/<int:restaurant_id>/menu/JSON')
 def restaurantMenuJSON(restaurant_id):
     session = DBsession()
@@ -15,6 +16,13 @@ def restaurantMenuJSON(restaurant_id):
     menu = session.query(MenuItem).filter_by(restaurant_id = restaurant.id).all()
     return jsonify(MenuItems = [i.serialize for i in menu])
     
+@app.route('/restaurants/<int:restaurant_id>/menu/<int:menu_id>/JSON')
+def restaurantMenuItemJSON(restaurant_id, menu_id):
+    session = DBsession()
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    menu = session.query(MenuItem).filter_by(restaurant_id = restaurant.id, id =menu_id).one()
+    return jsonify(MenuItems = [menu.serialize])
+
 
 @app.route('/')
 @app.route('/restaurants/<int:restaurant_id>/')
