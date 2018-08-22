@@ -51,9 +51,21 @@ def newRestaurant():
 def editRestaurant():
     return "edit a restaurant."    
 
-@app.route('/restaurants/delete/')
-def deleteRestaurant():
-    return "delete restaurant."    
+@app.route('/restaurants/<int:restaurant_id>/delete/', methods=['GET', 'POST'])
+def deleteRestaurant(restaurant_id):
+    session = DBsession()
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    
+    if request.method == 'POST':
+        
+        name = restaurant.name
+        session.delete(restaurant)
+        session.commit()
+        flash(str(name) + " has been delete!")
+        return redirect(url_for('listRestaurants'))
+    
+    else :
+        return render_template('deleteRestaurant.html', restaurant = restaurant)
 
 
 
@@ -116,6 +128,8 @@ def deleteMenuItem(restaurant_id, menu_id):
     
     else :
         return render_template('deleteMenuItem.html', restaurant_id = restaurant_id, menu = menu)
+
+        
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True #reload whenever code change

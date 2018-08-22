@@ -20,7 +20,7 @@
             </div><br/>
         {% else %}
         {% for i in items %}
-            <div>{{i.name}}<br/>
+            <div><h2>{{i.name}}</h2><br/>
                 <a href="{{ url_for('editRestaurant', restaurant_id= i.id) }}">edit</a><br/>
                 <a href="{{ url_for('deleteRestaurant', restaurant_id= i.id) }}">delete</a><br/>
                 <a href="{{ url_for('restaurantMenu', restaurant_id= i.id) }}">menu</a><br/>
