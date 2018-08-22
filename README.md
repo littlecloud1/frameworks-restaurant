@@ -8,9 +8,13 @@ Date: 8-20-2018<br />
 ## Requirement
   1. Python 3 version < 3.7 (cgi.parse_multipart does not work on 3.7)
   2. Flask
+  3. SQLAlchemy
+  
+  To install Flask:<br />
+  pip install flask<br />
   
   To install SQLAlchemy:<br />
-  pip install flask
+  pip install sqlalchemy<br />
   
 ## Files
 Inputfile:
@@ -21,16 +25,11 @@ Inputfile:
   
 ## How To run:
 
-#### To run a simple get and post server:<br />
-  python webserver-post.py
-
-and access [localhost:8080/hello](localhost:8080/hello)
-
 #### To run the restaurant server you have to import the database from udacity
   python database_setup.py<br />
   python lotsofmenu.py
 
-Then run the server:<br />
+#### run the server:<br />
   python webserver-restaurant.py <br />
-and access 
+and access localhost:5000/restaurants/1
 
