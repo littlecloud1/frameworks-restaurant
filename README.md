@@ -2,7 +2,9 @@
 **Github**: https://github.com/littlecloud1/frameworks-restaurant<br /><br />
 **Date**: 8-20-2018<br /><br />
 
-# frameworks-restaurant 
+## Project
+  This project aim to provide a user interface that user can create, read, update and delete restaurants and its menu.
+  Also, user can eaily retreive data in 4 ways by using JSON.
 
 
 ## Requirement
