@@ -1,14 +1,14 @@
 body {
     font-family: sans-serif;
-    background-color: #333333;
-    color: #ffffff;
+    margin:0 10% 5% 10%;
+    background: #eee;
+    color: #4e4e4e;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    color: #ffffff;
 }
 
 h1,
@@ -18,53 +18,62 @@ h2 {
 }
 
 h1 {
-    border-bottom: 2px solid #eee;
+    color: gray;
+    padding: 2% 5% 2% 5%;
+    border-bottom: 1px solid white;
+    background:white;
 }
 
 h2 {
-    font-size: 1.2em;
 }
 
 p,
 dd,
 dt {
-    color: #cccccc;
 }
 
 a {
     text-decoration: none;
-    color: #ffffcc;
-    font-size: .75em;
+    color:#ff7100;
+    font-size: 1em;
 }
 
 .pane {
-    position: absolute;
-    left: 25%;
-    border: 2px solid;
-    border-radius: 25px;
-    padding: 5px;
-    margin: 5px;
-    border-color: #999999;
-    background-color: #333333
+    background-color:#fcf3e5;
 }
-
+.control {
+    text-align:  right;
+    padding:15px;
+}
 .header {
     left: 50%;
     text-align: center;
+    background-color: rgba(255, 184, 77, 1);
+    padding: 2% 0%;
+    z-index: 2;
+    color:white;
 }
-
+.menu{
+    font-size: 1.1em;
+    border-bottom: 1px solid white;
+    padding-left:5%;
+}
 .name {
-    width: 50%;
     display: inline-block;
-    float: left;
+    
+
 }
 
-.description {}
+.description {
+    float:left;
+    margin-right:70%;
+}
 
 .price {
     text-align: right;
     width: 50%;
     float: right;
+    margin-right:2%;
 }
 
 .editdeletepane {}
