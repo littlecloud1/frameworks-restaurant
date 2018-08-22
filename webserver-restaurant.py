@@ -16,6 +16,20 @@ Base.metadata.bind = engine
 DBsession = sessionmaker(bind=engine)
 
 #JSON
+@app.route('/restaurants/JSON')
+def restaurantAllJSON():
+    session = DBsession()
+    restaurant = session.query(Restaurant).all()
+    
+    return jsonify(Restaurant = [i.serialize for i in restaurant])
+    
+@app.route('/restaurants/<int:restaurant_id>/JSON')
+def restaurantOneJSON(restaurant_id):
+    session = DBsession()
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    
+    return jsonify(MenuItems = restaurant.serialize)
+    
 @app.route('/restaurants/<int:restaurant_id>/menu/JSON')
 def restaurantMenuJSON(restaurant_id):
     session = DBsession()
@@ -32,6 +46,7 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
     
     return jsonify(MenuItems = menu.serialize)
 
+    
 #routing for restaurants' functions.
 @app.route('/')
 @app.route('/restaurants/')
@@ -40,7 +55,6 @@ def listRestaurants():
     restaurants = session.query(Restaurant).all()
     
     return render_template('restaurant.html', items = restaurants)
- 
  
 @app.route('/restaurants/new/', methods=['GET', 'POST'])
 def newRestaurant():
@@ -93,6 +107,7 @@ def deleteRestaurant(restaurant_id):
     else :
         return render_template('deleteRestaurant.html', restaurant = restaurant)
 
+        
 #routing for menu items' function.
 @app.route('/restaurants/<int:restaurant_id>/')
 def restaurantMenu(restaurant_id):
