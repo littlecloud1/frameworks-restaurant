@@ -13,14 +13,15 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        <h1>List of Restaurants</h1><br/>
-        <a href = "{{url_for('newRestaurant') }}">Create a New Restaurant</a><br/><br/>
+        <h1 class="header">List of Restaurants</h1>
+        <div class="pane">
+        <div class="control"><a href = "{{url_for('newRestaurant') }}">Create a New Restaurant</a></div>
         {% if items == [] %}
             <div> There are currently no restaurants in the database.
             </div><br/>
         {% else %}
         {% for i in items %}
-            <div><h2>{{i.name}}</h2><br/>
+            <div class="menu"><h2>{{i.name}}</h2><br/>
                 <a href="{{ url_for('editRestaurant', restaurant_id= i.id) }}">edit</a><br/>
                 <a href="{{ url_for('deleteRestaurant', restaurant_id= i.id) }}">delete</a><br/>
                 <a href="{{ url_for('restaurantMenu', restaurant_id= i.id) }}">menu</a><br/>
@@ -29,5 +30,6 @@
             </div>
         {% endfor %}
         {% endif %}
+        </div>
     </body>
 </html>
