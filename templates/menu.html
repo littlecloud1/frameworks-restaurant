@@ -19,19 +19,22 @@
             <div> There are currently no items in the menu.
             </div><br/>
         {% else %}
-        {% for i in items %}
-        
-            <div>
-                {{i.name}}<br/>
-                {{i.description}}<br/>
-                ${{i.price}} <br/>
-                <a href="{{ url_for('editMenuItem', restaurant_id= restaurant.id, menu_id = i.id) }}">edit</a><br/>
-                <a href="{{ url_for('deleteMenuItem', restaurant_id= restaurant.id, menu_id = i.id) }}">delete</a><br/>
-                <br/>
-                
-            </div>
-            
-        {% endfor %}
+        {% set clist = ['Appetizer', 'Entree', 'Dessert', 'Beverage']%}
+            {% for c in clist %}
+            <h1>{{c}}</h1>
+            {%for i in items%}
+                {% if i.course == c %}
+                <div>
+                        {{i.name}}<br/>
+                        {{i.description}}<br/>
+                        ${{i.price}} <br/>
+                        <a href="{{ url_for('editMenuItem', restaurant_id= restaurant.id, menu_id = i.id) }}">edit</a><br/>
+                        <a href="{{ url_for('deleteMenuItem', restaurant_id= restaurant.id, menu_id = i.id) }}">delete</a><br/>
+                        <br/>                    
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endfor %}
         {% endif %}
         <a href = "{{url_for('listRestaurants') }}">Back</a>
     </body>

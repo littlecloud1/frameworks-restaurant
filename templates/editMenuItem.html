@@ -15,14 +15,14 @@
             <p>Description:</p>
             <input type='text' name='description' placeholder='{{menu.description}}'>
             <p>Course:</p>
-            <input type="radio" name="course" value="appetizer"
-            {% if menu.course == "appetizer" %} checked {% endif %}> Appetizer<br/>
-            <input type="radio" name="course" value="entree"
-            {% if menu.course == "entree" %} checked {% endif %}> Entree<br/>
-            <input type="radio" name="course" value="dessert"
-            {% if menu.course == "dessert" %} checked {% endif %}> Dessert<br/>
-            <input type="radio" name="course" value="beverage"
-           {% if menu.course == "beverage"%} checked {% endif %}> Beverage<br/><br/>
+            <input type="radio" name="course" value="Appetizer"
+            {% if menu.course == "Appetizer" %} checked {% endif %}> Appetizer<br/>
+            <input type="radio" name="course" value="Entree"
+            {% if menu.course == "Entree" %} checked {% endif %}> Entree<br/>
+            <input type="radio" name="course" value="Dessert"
+            {% if menu.course == "Dessert" %} checked {% endif %}> Dessert<br/>
+            <input type="radio" name="course" value="Beverage"
+           {% if menu.course == "Beverage"%} checked {% endif %}> Beverage<br/><br/>
             <input type='submit' value='Edit'>
         </form><br/>
         </div>
