@@ -13,8 +13,12 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        <h1>{{restaurant.name}}</h1>
-        <a href = '{{url_for('newMenuItem', restaurant_id = restaurant.id) }}'>Create New Item</a><br/><br/>
+        <h1>{{restaurant.name}}</h1><br/>
+        <a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id) }}">Create New Item</a><br/><br/>
+        {% if items == [] %}
+            <div> There are currently no items in the menu.
+            </div>
+        {% else %}
         {% for i in items %}
         
             <div>
@@ -28,6 +32,7 @@
             </div>
             
         {% endfor %}
-        
+        {% endif %}
+        <a href = "{{url_for('listRestaurants') }}">Back</a>
     </body>
 </html>
