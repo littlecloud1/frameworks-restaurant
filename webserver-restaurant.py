@@ -27,7 +27,10 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 @app.route('/')
 @app.route('/restaurants/')
 def listRestaurants():
-    return "list of restaurants"
+    session = DBsession()
+
+    restaurants = session.query(Restaurant).all()
+    return render_template('restaurant.html', items = restaurants)
     
 @app.route('/restaurants/new/')
 def newRestaurant():
@@ -45,7 +48,6 @@ def deleteRestaurant():
 
 @app.route('/restaurants/<int:restaurant_id>/')
 def restaurantMenu(restaurant_id):
-
     #create a new thread for every cursor
     session = DBsession()
 
