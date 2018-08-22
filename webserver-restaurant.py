@@ -32,9 +32,20 @@ def listRestaurants():
     restaurants = session.query(Restaurant).all()
     return render_template('restaurant.html', items = restaurants)
     
-@app.route('/restaurants/new/')
+@app.route('/restaurants/new/', methods=['GET', 'POST'])
 def newRestaurant():
-    return "new a restaurant."    
+    session = DBsession()
+    
+    if request.method == 'POST':
+        
+        newItem = Restaurant(name = request.form['name'])
+        session.add(newItem)
+        session.commit()
+        flash("new restaurant created!")
+        return redirect(url_for('listRestaurants'))
+    
+    else :
+        return render_template('newRestaurant.html')
     
 @app.route('/restaurants/edit/')
 def editRestaurant():
@@ -52,7 +63,7 @@ def restaurantMenu(restaurant_id):
     session = DBsession()
 
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
-    items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
+    items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id).all()
     return render_template('menu.html', restaurant=restaurant, items= items)
     
 @app.route('/restaurants/<int:restaurant_id>/new/', methods =['GET', 'POST'])

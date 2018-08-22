@@ -17,7 +17,7 @@
         <a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id) }}">Create New Item</a><br/><br/>
         {% if items == [] %}
             <div> There are currently no items in the menu.
-            </div>
+            </div><br/>
         {% else %}
         {% for i in items %}
         
