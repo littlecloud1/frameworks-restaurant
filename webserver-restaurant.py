@@ -110,7 +110,9 @@ def newMenuItem(restaurant_id):
     
     if request.method == 'POST':
         
-        newItem = MenuItem(name = request.form['name'], restaurant_id = restaurant_id)
+        newItem = MenuItem(name = request.form['name'],
+            price = request.form['price'], description = request.form['description'],
+            course = request.form['course'], restaurant_id = restaurant_id)
         session.add(newItem)
         session.commit()
         flash("new menu item created!")
