@@ -6,9 +6,9 @@
 
 
 ## Requirement
-  1. Python 3 version < 3.7 (cgi.parse_multipart does not work on 3.7)
-  2. Flask
-  3. SQLAlchemy
+  * Python 3 version < 3.7 (cgi.parse_multipart does not work on 3.7)
+  * Flask
+  * SQLAlchemy
   
 ## Files
 Inputfile:
