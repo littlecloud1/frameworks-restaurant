@@ -24,7 +24,7 @@
             <div>
                 {{i.name}}<br/>
                 {{i.description}}<br/>
-                {{i.price}} <br/>
+                ${{i.price}} <br/>
                 <a href="{{ url_for('editMenuItem', restaurant_id= restaurant.id, menu_id = i.id) }}">edit</a><br/>
                 <a href="{{ url_for('deleteMenuItem', restaurant_id= restaurant.id, menu_id = i.id) }}">delete</a><br/>
                 <br/>

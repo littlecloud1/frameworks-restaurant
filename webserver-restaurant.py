@@ -131,6 +131,9 @@ def editMenuItem(restaurant_id, menu_id):
     if request.method == 'POST':
  
         menu.name = request.form['name']
+        menu.price = request.form['price']
+        menu.description = request.form['description']
+        menu.course = request.form['course']
         session.add(menu)
         session.commit()
         flash(str(menu.name) + " has been edited!")
