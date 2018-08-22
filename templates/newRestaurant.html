@@ -5,15 +5,17 @@
 </head>
     <body>
     
-        <h1>New Restaurant</h1>
-        <div>
+        <h1 >New Restaurant</h1>
+        <div class="pane">
+        <div class="control">
+            <a href = "{{url_for('listRestaurants') }}">Back</a></div>
+        <div >
             <form action="{{url_for('newRestaurant')}}" method='POST'>
-                <p>Name:</p>
+                <p class="name">Name:</p><br/>
                 <input type='text' name='name'>
                 <input type='submit' value='Create'>
-            </form><br/>
+            </form>
         </div>
-            
-        <a href = "{{url_for('listRestaurants') }}">Back</a>
+        </div>
     </body>
 </html>

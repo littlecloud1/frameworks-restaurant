@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    margin:0 10% 5% 10%;
+    margin:0 10% 2% 10%;
     background: #eee;
     color: #4e4e4e;
 }
@@ -45,7 +45,6 @@ a {
 .control {
     text-align:  right;
     padding:15px;
-    border-bottom: 1px solid white;
 }
 .header {
     left: 50%;
