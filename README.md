@@ -1,20 +1,16 @@
-Author: Lai Man Tang<br />
-Github: https://github.com/littlecloud1/Simple-restaurant<br />
-Date: 8-20-2018<br />
+**Author**: Lai Man Tang<br /><br />
+**Github**: https://github.com/littlecloud1/frameworks-restaurant<br /><br />
+**Date**: 8-20-2018<br /><br />
 
-# frameworks-restaurant 
+## Project
+  This project aim to provide a user interface that user can create, read, update and delete restaurants and its menu.
+  Also, user can eaily retreive data in 4 ways by using JSON.
 
 
 ## Requirement
-  1. Python 3 version < 3.7 (cgi.parse_multipart does not work on 3.7)
-  2. Flask
-  3. SQLAlchemy
-  
-  To install Flask:<br />
-  pip install flask<br />
-  
-  To install SQLAlchemy:<br />
-  pip install sqlalchemy<br />
+  * Python 3 version < 3.7 (cgi.parse_multipart does not work on 3.7)
+  * Flask
+  * SQLAlchemy
   
 ## Files
 Inputfile:
@@ -26,10 +22,16 @@ Inputfile:
 ## How To run:
 
 #### To run the restaurant server you have to import the database from udacity
-  python database_setup.py<br />
-  python lotsofmenu.py
+``` bash 
+#build sqlalchemy database setup
+python database_setup.py
 
-#### run the server:<br />
-  python webserver-restaurant.py <br />
-and access localhost:5000/restaurants/1
+#import data
+python lotsofmenu.py
+
+# run the server
+python webserver-restaurant.py
+``` 
+The website will run in port 5000: <br/>
+ localhost:5000/restaurants
 
