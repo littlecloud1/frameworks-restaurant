@@ -6,7 +6,10 @@
     <body>
     
         <h1>New Menu Item</h1>
-        <div>
+        <div class="pane">
+        <div class="control">
+            <a href = "{{url_for('listRestaurants') }}">Back</a></div>
+        <div class ="inputform">
         <form action="{{url_for('newMenuItem', restaurant_id = restaurant_id)}}" method='POST'>
             <p>Name:</p>
             <input type='text' name='name'>
@@ -22,6 +25,6 @@
             <input type='submit' value='Create'>
         </form><br/>
         </div>  
-        <a href = "{{url_for('restaurantMenu', restaurant_id = restaurant_id) }}">Back</a>
+        </div>  
     </body>
 </html>

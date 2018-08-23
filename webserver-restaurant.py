@@ -124,9 +124,12 @@ def newMenuItem(restaurant_id):
     session = DBsession()
     
     if request.method == 'POST':
+        price = request.form['price']
+        if (price[0] != '$'):
+            price = '$'+ price
         
         newItem = MenuItem(name = request.form['name'],
-            price = request.form['price'], description = request.form['description'],
+            price = price, description = request.form['description'],
             course = request.form['course'], restaurant_id = restaurant_id)
         session.add(newItem)
         session.commit()

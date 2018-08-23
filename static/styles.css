@@ -39,13 +39,24 @@ a {
     font-size: 1em;
 }
 
+input[type=submit] {
+    padding:5px 15px; 
+    background:#d7d1d1; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
 .pane {
     background-color:#fcf3e5;
 }
+
 .control {
     text-align:  right;
     padding:15px;
 }
+
 .header {
     left: 50%;
     text-align: center;
@@ -54,11 +65,20 @@ a {
     z-index: 2;
     color:white;
 }
+
 .menu{
     font-size: 1.1em;
     border-bottom: 1px solid white;
     padding-left:5%;
 }
+
+.inputform{
+    
+    font-size: 1.1em;
+    padding:5%;
+    
+}
+
 .name {
     display: inline-block;
     

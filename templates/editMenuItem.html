@@ -6,12 +6,15 @@
     <body>
     
         <h1>Edit Menu Item</h1>
-        <div>
+        <div class="pane">
+        <div class="control">
+            <a href = "{{url_for('listRestaurants') }}">Back</a></div>
+        <div class ="inputform">
         <form action="{{url_for('editMenuItem', restaurant_id = restaurant_id, menu_id =menu.id)}}" method='POST'>
             <p>Name: {{menu.name}}</p>
             <input type='text' name='name' placeholder='{{menu.name}}'>
             <p>Price:</p>
-            <input type='text' name='price' placeholder='${{menu.price}}'>
+            <input type='text' name='price' placeholder='{{menu.price}}'>
             <p>Description:</p>
             <input type='text' name='description' placeholder='{{menu.description}}'>
             <p>Course:</p>
@@ -26,6 +29,6 @@
             <input type='submit' value='Edit'>
         </form><br/>
         </div>
-        <a href = "{{url_for('restaurantMenu', restaurant_id = restaurant_id) }}">Cancel</a>
+        </div>
     </body>
 </html>
