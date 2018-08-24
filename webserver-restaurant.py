@@ -5,8 +5,11 @@
     Github:https://github.com/littlecloud1
 '''
 
+import os
+import random, string
 from flask import Flask, render_template, url_for, request, redirect
 from flask import flash, jsonify
+from flask import session as login_session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Restaurant, MenuItem
@@ -56,6 +59,14 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 
     return jsonify(MenuItems=menu.serialize)
 
+
+# Login session
+@app.route('/login')
+def showLogin(){
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for i in xrange(32))
+}
+    
 
 # routing for restaurants' functions.
 @app.route('/')
