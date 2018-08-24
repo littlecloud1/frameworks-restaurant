@@ -62,12 +62,11 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 
 # Login session
 @app.route('/login')
-def showLogin(){
+def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                    for i in xrange(32))
+                    for x in range(32))
     login_session['state'] = state
-    return  "The current session state is {}".format( login_session['state'])
-}
+    return  render_template('login.html')
     
 
 # routing for restaurants' functions.
