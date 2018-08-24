@@ -65,6 +65,8 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 def showLogin(){
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for i in xrange(32))
+    login_session['state'] = state
+    return  "The current session state is {}".format( login_session['state'])
 }
     
 
