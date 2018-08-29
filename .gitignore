@@ -4,5 +4,4 @@
 
 *.db
 
-Procfile
-
+client_secrets.json
