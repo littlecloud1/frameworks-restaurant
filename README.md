@@ -5,6 +5,9 @@
 ## Project
   This project aim to provide a user interface that user can create, read, update and delete restaurants and its menu.
   Also, user can eaily retreive data in 4 ways by using JSON.
+  
+  There are some new features adding in other branch:
+   * Oauth : implement google OAuth login method.
 
 
 ## Requirement
