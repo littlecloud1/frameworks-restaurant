@@ -20,7 +20,9 @@
         {% if  name == "" %}
             <a href = "{{url_for('showLogin') }}">Login</a>
         {% else %}
-            {{name}}
+            {{name}} |
+            <a href = "{{url_for('gdisconnect') }}">Logout</a>
+
         {% endif %}
         </div>
         {% if items == [] %}
