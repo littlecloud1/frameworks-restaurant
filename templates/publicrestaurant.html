@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel=stylesheet type='text/css' href="{{url_for('static', filename='styles.css')}}">
+</head>
+    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                  <li><strong>{{message}}</strong></li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <h1 class="header">List of Restaurants</h1>
+        <div class="pane">
+        <div class="control"> 
+            <a href = "{{url_for('showLogin') }}">Login</a>
+        </div>
+        {% if items == [] %}
+            <div> There are currently no restaurants in the database.
+            </div><br/>
+        {% else %}
+        {% for i in items %}
+            <div class="menu"><h2>{{i.name}}</h2><br/>
+                <a href="{{ url_for('restaurantMenu', restaurant_id= i.id) }}">menu</a><br/>
+                <br/>
+                
+            </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+    </body>
+</html>

@@ -13,7 +13,7 @@ from flask import flash, jsonify, make_response
 from flask import session as login_session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Restaurant, MenuItem
+from database_setup import Base, Restaurant, MenuItem, User
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 
@@ -218,7 +218,10 @@ def createUser(login_session):
     session.commit()
     
     #return user id
-    user = session.query(User).filter_by(name=name, email=email).one()
+    user = session.query(User).filter_by(name=name, email=email)
+    print (user)
+    user = user[0]
+    
     return user.id
 
 
@@ -230,7 +233,8 @@ def getUserInfo(user_id):
 def getUserID(email):
     session = DBsession()
     try:
-        user = session.query(User).filter_by(id=user_id).one()return user.id
+        user = session.query(User).filter_by(id=user_id).one()
+        return user.id
     except:
         return None
     
@@ -242,10 +246,11 @@ def getUserID(email):
 def listRestaurants():
     session = DBsession()
     restaurants = session.query(Restaurant).all()
-    if 'username' in login_session:
-        name = login_session['username']
-    else:
-        name = ""
+    
+    if 'username' not in login_session:
+        return render_template('publicrestaurant.html', items=restaurants)
+    
+    name = login_session['username']
     return render_template('restaurant.html', items=restaurants, name=name)
 
 
