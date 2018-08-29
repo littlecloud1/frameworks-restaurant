@@ -214,7 +214,14 @@ def createUser(login_session):
     #return user id
     user = session.query(User).filter_by(name=name, email=email).one()
     return user.id
-   
+
+
+def getUserInfo(user_id):
+    session = DBsession()
+    return session.query(User).filter_by(id=user_id).one()
+
+
+
 #############################################################   
 # routing for restaurants' functions.
 @app.route('/')
