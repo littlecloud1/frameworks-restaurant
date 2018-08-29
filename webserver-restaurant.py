@@ -221,6 +221,13 @@ def getUserInfo(user_id):
     return session.query(User).filter_by(id=user_id).one()
 
 
+def getUserID(email):
+    session = DBsession()
+    try:
+        user = session.query(User).filter_by(id=user_id).one()return user.id
+    except:
+        return None
+    
 
 #############################################################   
 # routing for restaurants' functions.
