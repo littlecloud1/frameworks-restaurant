@@ -195,7 +195,26 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response    
 
-        
+   
+#############################################################   
+# User Account functions.
+def createUser(login_session):
+    session = DBsession()
+    
+    # Get the info from login_session
+    name = login_session['username']
+    email = login_session['email']
+    picture = login_session['picture']
+    
+    #Insert into Database
+    newUser = User(name=name, email=email, picture=picture)
+    session.add(newUser)
+    session.commit()
+    
+    #return user id
+    user = session.query(User).filter_by(name=name, email=email).one()
+    return user.id
+   
 #############################################################   
 # routing for restaurants' functions.
 @app.route('/')
