@@ -26,7 +26,9 @@ DBsession = sessionmaker(bind=engine)
 
 CLIENT_ID= json.loads(
             open('client_secrets.json', 'r').read())['web']['client_id']
+APPLICATION_NAME = "Restaurant Menu Application"
 
+#########################################################            
 # JSON
 @app.route('/restaurants/JSON')
 def restaurantAllJSON():
@@ -66,7 +68,8 @@ def restaurantMenuItemJSON(restaurant_id, menu_id):
 
     return jsonify(MenuItems=menu.serialize)
 
-
+    
+#############################################################
 # Login session
 @app.route('/login')
 def showLogin():
@@ -78,6 +81,7 @@ def showLogin():
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
+    session = DBsession()
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter'),
                                  401)
@@ -143,6 +147,7 @@ def gconnect():
     data = json.loads(answer.text)
     
     login_session['username'] = data['name']
+    print(login_session['username'])
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
     
@@ -157,15 +162,53 @@ def gconnect():
     output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
     return output
+
+# Disconnect
+@app.route("/gdisconnect")
+def gdisconnect():
+    # disconnect a user
+    credentials = login_session.get('credentials')
+    if credentials is None:
+        response = make_response(json.dumps('Current user not connected'), 401)
+        response.headers['Content-Type'] = 'application/json'
+        return response
+    
+    # sending revoke token to Google OAuth
+    access_token = credentials.access_token
+    url = 'https://accounts.google.com/o/oauth2/revoke?token={}'.format( login_session['access_token'])
+    h = httplib2.Http()
+    result = h.request(url, 'GET')[0]
+    
+    # if success, delete all cookies
+    if result['status'] == '200':
+        del login_session['access_token']
+        del login_session['gplus_id']
+        del login_session['username']
+        del login_session['email']
+        del login_session['picture']
         
+        response = make_response(json.dumps('Successfully disconnected.'), 200)
+        response.headers['Content-Type'] = 'application/json'
+        return response
+        
+    else:
+        response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+        response.headers['Content-Type'] = 'application/json'
+        return response    
+
+        
+#############################################################   
 # routing for restaurants' functions.
 @app.route('/')
 @app.route('/restaurants/')
 def listRestaurants():
     session = DBsession()
     restaurants = session.query(Restaurant).all()
-
-    return render_template('restaurant.html', items=restaurants)
+    if 'username' in login_session:
+        name = login_session['username']
+    else:
+        name = ""
+    return render_template('restaurant.html', items=restaurants, name=name)
 
 
 @app.route('/restaurants/new/', methods=['GET', 'POST'])
