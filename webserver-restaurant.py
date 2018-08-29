@@ -250,8 +250,8 @@ def newRestaurant():
         
     session = DBsession()
     if request.method == 'POST':
-
-        newItem = Restaurant(name=request.form['name'])
+        user_id = getUserID(login_session)
+        newItem = Restaurant(name=request.form['name'],user_id=user_id)
         session.add(newItem)
         session.commit()
         flash("new restaurant created!")
@@ -335,12 +335,13 @@ def newMenuItem(restaurant_id):
         price = request.form['price']
         if (price[0] != '$'):
             price = '$' + price
-
+        user_id = getUserID(login_session)
         newItem = MenuItem(name=request.form['name'],
                            price=price,
                            description=request.form['description'],
                            course=request.form['course'],
-                           restaurant_id=restaurant_id)
+                           restaurant_id=restaurant_id,
+                           user_id=user_id)
         session.add(newItem)
         session.commit()
         flash("new menu item created!")
