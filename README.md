@@ -12,8 +12,11 @@
 
 ## Requirement
   * Python 3 version < 3.7 (cgi.parse_multipart does not work on 3.7)
+  #### Python Lib
   * Flask
   * SQLAlchemy
+  * OAuth2Client
+  * Request
   
 ## Files
 Inputfile:
