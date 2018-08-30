@@ -318,17 +318,20 @@ def deleteRestaurant(restaurant_id):
         return render_template('deleteRestaurant.html',
                                restaurant=restaurant)
 
-
+                               
+#############################################################
 # routing for menu items' function.
 @app.route('/restaurants/<int:restaurant_id>/')
 def restaurantMenu(restaurant_id):
     # create a new thread for every cursor.
-    session = DBsession()
-
+    session = DBsession()  
     restaurant = session.query(Restaurant).filter_by(
                 id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
             restaurant_id=restaurant.id).all()
+            
+    if 'username' not in login_session:
+        return render_template('publicmenu.html', restaurant=restaurant, items=items)
     return render_template('menu.html',
                            restaurant=restaurant, items=items)
 
