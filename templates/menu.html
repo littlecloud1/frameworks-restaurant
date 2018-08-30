@@ -13,12 +13,16 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        <h1 class="header">{{restaurant.name}}
+        <h1 class="header">{{restaurant.name}}{{restaurant.user_id}}
+        <figure class="creator">
+				<img src="{{ creator.picture}}">
+				<figcaption>{{ creator.name }}</figcaption>
+        </figure>
         </h1>
         <div class="pane">
         <div class="control">
             <a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id) }}">Create New Item</a>  |  
-            <a href = "{{url_for('listRestaurants') }}">Back</a>|
+            <a href = "{{url_for('listRestaurants') }}">Back</a> |
             {{name}} 
             <a href = "{{url_for('gdisconnect') }}">Logout</a>
         </div> 

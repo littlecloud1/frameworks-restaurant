@@ -115,7 +115,7 @@ def gconnect():
         response = make_response(json.dumps(result.get('error')),
                                 500)
                                
-        print("error")
+
         response.headers['Content-Type'] = 'application/json'
         return response                                
     
@@ -147,7 +147,6 @@ def gconnect():
     data = json.loads(answer.text)
     
     login_session['username'] = data['name']
-    print(login_session['username'])
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
     
@@ -217,22 +216,23 @@ def createUser(login_session):
     session.commit()
     
     #return user id
-    user = session.query(User).filter_by(name=name, email=email)
-    print (user)
-    user = user[0]
+    user = session.query(User).filter_by(name=name, email=email).one()
     
     return user.id
 
 
 def getUserInfo(user_id):
     session = DBsession()
-    return session.query(User).filter_by(id=user_id).one()
-
+    try:
+        user = session.query(User).filter_by(id=user_id).one()
+        return user
+    except:
+        return None
 
 def getUserID(email):
     session = DBsession()
     try:
-        user = session.query(User).filter_by(id=user_id).one()
+        user = session.query(User).filter_by(email=email).one()
         return user.id
     except:
         return None
@@ -329,11 +329,15 @@ def restaurantMenu(restaurant_id):
                 id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
             restaurant_id=restaurant.id).all()
-            
+    
+    creator = getUserInfo(restaurant.user_id)
+
     if 'username' not in login_session:
-        return render_template('publicmenu.html', restaurant=restaurant, items=items)
+        return render_template('publicmenu.html', restaurant=restaurant, items=items, creator=creator)
+    
+    name = login_session['username']
     return render_template('menu.html',
-                           restaurant=restaurant, items=items)
+                           restaurant=restaurant, items=items, name=name, creator=creator)
 
 
 @app.route('/restaurants/<int:restaurant_id>/new/',
