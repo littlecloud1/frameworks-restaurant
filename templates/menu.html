@@ -13,7 +13,7 @@
                 </ul>
             {% endif %}
         {% endwith %}
-        <h1 class="header">{{restaurant.name}}{{restaurant.user_id}}
+        <h1 class="header">{{restaurant.name}}
         <figure class="creator">
 				<img src="{{ creator.picture}}">
 				<figcaption>{{ creator.name }}</figcaption>
@@ -21,10 +21,10 @@
         </h1>
         <div class="pane">
         <div class="control">
-            <a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id) }}">Create New Item</a>  |  
-            <a href = "{{url_for('listRestaurants') }}">Back</a> |
+            <a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id) }}">Create New Item</a>  |         
             {{name}} 
-            <a href = "{{url_for('gdisconnect') }}">Logout</a>
+            <a href = "{{url_for('gdisconnect') }}">Logout</a>  |   
+            <a href = "{{url_for('listRestaurants') }}">Back</a>
         </div> 
         {% if items == [] %}
             <div > There are currently no items in the menu.
