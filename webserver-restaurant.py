@@ -256,7 +256,7 @@ def listRestaurants():
 
 @app.route('/restaurants/new/', methods=['GET', 'POST'])
 def newRestaurant():
-    if 'username' in login_session:
+    if 'username' not in login_session:
         return redirect(url_for('showLogin'))
         
     session = DBsession()
@@ -274,7 +274,7 @@ def newRestaurant():
 
 @app.route('/restaurants/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 def editRestaurant(restaurant_id):
-    if 'username' in login_session:
+    if 'username' not in login_session:
         return redirect(url_for('showLogin'))
         
     session = DBsession()
@@ -299,7 +299,7 @@ def editRestaurant(restaurant_id):
 @app.route('/restaurants/<int:restaurant_id>/delete/',
            methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
-    if 'username' in login_session:
+    if 'username' not in login_session:
         return redirect(url_for('showLogin'))
         
     session = DBsession()
@@ -337,7 +337,7 @@ def restaurantMenu(restaurant_id):
 @app.route('/restaurants/<int:restaurant_id>/new/',
            methods=['GET', 'POST'])
 def newMenuItem(restaurant_id):
-    if 'username' in login_session:
+    if 'username' not in login_session:
         return redirect(url_for('showLogin'))
         
     session = DBsession()
@@ -368,7 +368,7 @@ def newMenuItem(restaurant_id):
 @app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/edit/',
            methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
-    if 'username' in login_session:
+    if 'username' not in login_session:
         return redirect(url_for('showLogin'))
         
     session = DBsession()
@@ -396,7 +396,7 @@ def editMenuItem(restaurant_id, menu_id):
 @app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/delete/',
            methods=['GET', 'POST'])
 def deleteMenuItem(restaurant_id, menu_id):
-    if 'username' in login_session:
+    if 'username' not in login_session:
         return redirect(url_for('showLogin'))
         
     session = DBsession()
