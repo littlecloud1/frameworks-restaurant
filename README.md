@@ -3,15 +3,19 @@
 **Date**: 8-20-2018<br /><br />
 
 ## Project
-  This project aim to provide a user interface that user can create, read, update and delete restaurants and its menu.
+  This project aim to provide a user interface that user can create, read, update and delete restaurants and its' menu.
   Also, user can eaily retreive data in 4 ways by using JSON.
   
+  #### Security
+  The user have to login to access the restricted pages and functions ie. create, edit, and delete.
+  If user does not login, the web pages will redicted to public restaurants' list, public restaurants' menu list or login pages.
+  
   There are some new features is ongoing:
-   * Oauth : implement google OAuth login method.
+   * Oauth : implement google & Facebook OAuth login method.
 
 
 ## Requirement
-  * Python 3 version < 3.7 (cgi.parse_multipart does not work on 3.7)
+  * Python 3 version < 3.7
   #### Python Lib
   * Flask
   * SQLAlchemy
