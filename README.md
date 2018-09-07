@@ -7,7 +7,7 @@
   Also, user can eaily retreive data in 4 ways by using JSON.
   
   There are some new features is ongoing:
-   * Oauth : implement google OAuth login method.
+   * Oauth : implement google and Facebook OAuth login method.
 
 
 ## Requirement
