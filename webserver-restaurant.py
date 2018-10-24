@@ -211,7 +211,7 @@ def fbconnect():
     #get the authorization code from post method
     access_token = request.data
 
-	#Exchange client token for long-lived server-side token
+    #Exchange client token for long-lived server-side token
     app_id = json.loads(open('fb_client_secrets.json', 'r').read())[
         'web']['app_id']
     app_secret = json.loads(
@@ -220,8 +220,8 @@ def fbconnect():
         app_id, app_secret, access_token)
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-	
-	    userinfo_url = "https://graph.facebook.com/v2.8/me"
+    
+    userinfo_url = "https://graph.facebook.com/v2.8/me"
     '''
         Due to the formatting for the result from the server token exchange we have to
         split the token first on commas and select the first index which gives us the key : value
@@ -234,7 +234,7 @@ def fbconnect():
     url = 'https://graph.facebook.com/v2.8/me?access_token=%s&fields=name,id,email' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-	
+    
     data = json.loads(result)
     login_session['provider'] = 'facebook'
     login_session['username'] = data["name"]
@@ -286,7 +286,7 @@ def fbdisconnect():
     url = 'https://graph.facebook.com/%s/permissions?access_token=%s' % (facebook_id,access_token)
     h = httplib2.Http()
     result = h.request(url, 'DELETE')[1]
-	
+    
     # if success, delete all cookies
     if result['status'] == '200':
         del login_session['access_token']
@@ -301,8 +301,8 @@ def fbdisconnect():
     else:
         response = make_response(json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
-        return response    	
-		
+        return response     
+        
 #############################################################   
 # User Account functions.
 def createUser(login_session):
