@@ -270,7 +270,39 @@ def fbconnect():
     flash("you are now logged in as {}".format(login_session['username']))
     return output
 
+# Disconnect
+@app.route("/fbdisconnect")
+def fbdisconnect():
+    # disconnect a user
+    access_token = login_session.get('access_token')
+    if access_token is None:
+        response = make_response(json.dumps('Current user not connected'), 401)
+        response.headers['Content-Type'] = 'application/json'
+        return response
+    
+    facebook_id = login_session['facebook_id']
+    # The access token must me included to successfully logout
+    access_token = login_session['access_token']
+    url = 'https://graph.facebook.com/%s/permissions?access_token=%s' % (facebook_id,access_token)
+    h = httplib2.Http()
+    result = h.request(url, 'DELETE')[1]
 	
+    # if success, delete all cookies
+    if result['status'] == '200':
+        del login_session['access_token']
+        del login_session['gplus_id']
+        del login_session['username']
+        del login_session['email']
+        del login_session['picture']
+        
+        flash("Successfully Logout.")
+        return redirect(url_for('listRestaurants'))
+        
+    else:
+        response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+        response.headers['Content-Type'] = 'application/json'
+        return response    	
+		
 #############################################################   
 # User Account functions.
 def createUser(login_session):
