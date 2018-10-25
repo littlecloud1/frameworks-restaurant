@@ -21,6 +21,7 @@
   * SQLAlchemy
   * OAuth2Client
   * Request
+  * Werkzeug (Facebook OAuth require SSL for redirecting, you can use self-signed certificate, please see http://flask.pocoo.org/snippets/111/)
   
 ## Files
 Inputfile:
